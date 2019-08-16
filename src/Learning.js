@@ -245,8 +245,8 @@ class EX13 extends React.Component{
     // main 'Application' that renders 2 components:
     // a component that displays the text
     // a component that updates the text
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {message : 'Enter Text : '};
         this.changeMessage = this.changeMessage.bind(this);
 
@@ -321,7 +321,8 @@ class TextBox extends React.Component {
 const TextBox2 = (props) => {
     // Same as TextBox except using UseState instead
     // Lesser lines of code as do not require to have constructor
-    
+    // Also easier as State setter also created for you
+
     const [input, setInput] = React.useState("Enter Text : ");
 
     const handleChange = event => setInput(event.target.value);
