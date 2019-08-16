@@ -311,6 +311,31 @@ class TextBox extends React.Component {
     // Only upon clicking the button, the setState of EX13's message will be updated
     // with TextBox's state of input
 
+    // Have 2 event handlers. On Textbox Change, will update own state of ‘input’
+    // On click of button, will update state of ‘message’ in parent component
+
+
     }
+}
+
+const TextBox2 = (props) => {
+    // Same as TextBox except using UseState instead
+    // Lesser lines of code as do not require to have constructor
+    
+    const [input, setInput] = React.useState("Enter Text : ");
+
+    const handleChange = event => setInput(event.target.value);
+
+    const handleClick = () => {
+        props.onClick(input);
+    }
+
+    return <div>
+        <input type ="text" value ={input} onChange ={handleChange}/>
+        <button onClick = {handleClick}>
+            submit
+        </button>
+    </div>
+
 }
 export default EX13;
