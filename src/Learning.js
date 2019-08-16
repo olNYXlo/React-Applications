@@ -199,5 +199,118 @@ const HeadlineEX11 = ({headline, onChangeHeadline}) => (
     // with an input text box that on change will run the property onChangeHeadline
     // which calls another function that handles the change
 );
-export default EX11;
+// export default EX11;
 //=======================================================================================
+// EXAMPLE 12 - Class VS Function
+// Class WILL HAVE RENDER
+// FUNCTION DOES NOT HAVE RENDER
+
+class EX12 extends React.Component {
+    render(){
+        return (
+            <div>
+                <First/>
+                <Second/>
+            </div>
+        );
+    }
+};
+class First extends React.Component {
+    render(){
+        return (
+            <div>
+                <h1>Web Development</h1>
+            </div>
+        );
+    }
+
+};
+class Second extends React.Component{
+    render(){
+        return (
+            <div>
+                <h2>Mobile Development</h2>
+            </div>
+        );
+    }
+}
+// export default EX12;
+//=======================================================================================
+// EXAMPLE 13 - Text Box with submit button that updates text
+// As textbox is separate from Button element, have to have use state
+// to keep track of what to update upon clicking
+
+
+class EX13 extends React.Component{
+    // main 'Application' that renders 2 components:
+    // a component that displays the text
+    // a component that updates the text
+    constructor(props){
+        super(props);
+        this.state = {message : 'Enter Text : '};
+        this.changeMessage = this.changeMessage.bind(this);
+
+    }
+
+    changeMessage(newMessage) {
+        this.setState({message : newMessage});
+    }
+
+    render(){
+        return <div>
+            <Display message={this.state.message}/>
+            <TextBox onClick = {this.changeMessage}/>
+            </div>
+    }
+    // textbox is rendered with a Property (Prop) of onChange
+    // that executes a function that sets the State
+    // Display is rendered with a Property of message
+
+}
+
+const Display = (props) => {
+    return <h1>{props.message}</h1>
+    // Displays the parent component's message inside its state
+}
+
+class TextBox extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = ({input : 'Enter Text : '});
+        this.handleClick = this.handleClick.bind(this);
+    }
+    // Have to create another State attribute of input for textbox
+    // As the button is separate from the input box
+    // so have to have an attribute to keep track of the entered text
+
+
+    handleClick = () => {
+        this.props.onClick(this.state.input);
+    }
+    // this function is the event handler for the button
+    // will run the parent component's (EX13) function that set's its state of message
+    // with TextBox's state of input
+
+    handleInput = (newMessage) => {
+        this.setState({input : newMessage.target.value});
+    }
+    // this function is the event handler for the textbox
+    // will update the TextBox's state of input
+    
+
+    render(){
+
+        return <div>
+        <input type ="text" value ={this.state.input} onChange ={this.handleInput}/>
+        <button onClick = {this.handleClick}>
+            submit
+        </button>
+    </div>
+    // So for every change in the textbox, the TextBox's state of input will be updated
+    // Only upon clicking the button, the setState of EX13's message will be updated
+    // with TextBox's state of input
+
+    }
+}
+export default EX13;
