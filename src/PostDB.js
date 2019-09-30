@@ -15,36 +15,58 @@ class PostDB extends React.Component{
                 xcsrftoken : null,
                 token : null
             }
-            Axios.get('http://192.168.200.45:8090/')
+            
+            /*
+            Axios.get('http://192.168.200.51:8090/')
+            //Axios.get('http://192.168.200.200:8080/backendapi/')
             .then(response => {
                 const head = JSON.stringify(response.headers);
-                this.setState ({xcsrftoken : head.substring(37,73)});
+                this.setState ({xcsrftoken : head.substring(17,53)});
                 // gets X-CSRF-TOKEN inside header. used for postman
                 this.setState({token : Cookies.get('XSRF-TOKEN')});
                 // gets XSRF-TOKEN inside cookies, used for swagger
                 console.log(response.headers);
                 console.log(Cookies.get('XSRF-TOKEN'));
             });
+            */
+            
+            
+            
+            
         }
         componentWillMount(){    
             const postData = {
                 password : "password"
             }
-            
+
+            /*
+            Axios.get('http://192.168.200.200:8080/backendapi/')
+            .then(response => {
+                const head = JSON.stringify(response.headers);
+                this.setState ({xcsrftoken : head.substring(17,53)});
+                // gets X-CSRF-TOKEN inside header. used for postman
+                this.setState({token : Cookies.get('XSRF-TOKEN')});
+                // gets XSRF-TOKEN inside cookies, used for swagger
+                console.log(response.headers);
+                console.log(Cookies.get('XSRF-TOKEN'));
+            });
+            */
+
 
             const postHeaders = {
                 headers : {
-                    //'X-CSRF-TOKEN' : this.state.xcsrftoken,
-                    //'X-XSRF-TOKEN' : this.state.xcsrftoken,
-                    //'XSRF-TOKEN' : this.state.xcsrftoken
+                    //'X-CSRF-TOKEN' : token,
+                    //'X-XSRF-TOKEN' : token,
+                    //'XSRF-TOKEN' : token,
                     
                     //'X-CSRF-TOKEN' :"7255ac3b-15df-453f-9d71-8afe2502b9c2",
                     //'XSRF-TOKEN' :'7255ac3b-15df-453f-9d71-8afe2502b9c2',
                     //'X-XSRF-TOKEN' :'7255ac3b-15df-453f-9d71-8afe2502b9c2'
 
+                    //'Set-Cookie' : `XSRF-TOKEN=${this.state.xcsrftoken}`,
 
-                    //'Set-Cookie' : `XSRF-TOKEN=${Cookies.get('XSRF-TOKEN')};Path=/;HTTPOnly`,
-                    //'Authorization' : `Bearer ${Cookies.get('XSRF-TOKEN')}`,
+                    // 'Authorization' : `Bearer ${token}`
+                    // 'Authorization' : `Bearer ${Cookies.get('XSRF-TOKEN')}`,
                     //'X-CSRF-TOKEN' : Cookies.get('XSRF-TOKEN'),
                     //'X-XSRF-TOKEN' : Cookies.get('XSRF-TOKEN'),
                     //'XSRF-TOKEN' : Cookies.get('XSRF-TOKEN')
@@ -57,11 +79,13 @@ class PostDB extends React.Component{
             tokens.set('http://192.168.200.45:8090/admin/42/login', 'XSRF-TOKEN', Cookies.get('XSRF-TOKEN'));
             */
             //Cookies.set('XSRF-TOKEN',Cookies.get('XSRF-TOKEN'));
+
             //Axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
             //Axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+            //Axios.defaults.headers.common['Authorization'] = this.state.xcsrftoken;
 
 
-            Axios.defaults.withCredentials = true
+            Axios.defaults.withCredentials = true;
             // Allows passing of cookies inside Axios request
 
 
@@ -69,7 +93,8 @@ class PostDB extends React.Component{
             // Cookies.set('http://192.168.200.45:8090/admin/42/login', 'XSRF-TOKEN', Cookies.get('XSRF-TOKEN'));
             // Axios("http://192.168.200.45:8090/admin/42/login", {
             //     method: "post",data: postData, postHeaders})
-            Axios.post('http://192.168.200.45:8090/admin/42/login',postData, postHeaders)
+            Axios.post('http://localhost/admin/42/login',postData,postHeaders)
+            //Axios.post('http://192.168.200.200:8080/backendapi/admin/42/login',postData)
             // Axios.post('http://localhost:8090/admin/42/login',postData)
             // Axios.post('http://localhost:8090/admin/42/login',postData,{'useCredentials': true})
             .then(response => {
@@ -119,10 +144,10 @@ class PostDB extends React.Component{
             return (
                 <div>
                 <h1>
-                    {this.state.xcsrftoken}
+                    {Cookies.get('XSRF-TOKEN')}
                 </h1>
                 <h2>
-                    {this.state.token}
+                    {this.state.xcsrftoken}
                 </h2>
 
 

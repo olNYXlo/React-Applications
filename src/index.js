@@ -7,12 +7,16 @@ import Learning from './Learning';
 import * as serviceWorker from './serviceWorker';
 import ShowDB from './ShowDB';
 import PostDB from './PostDB';
+import Test from './TEST';
+import FrontEndTest from './FrontEndTest';
 
 // ReactDOM.render(<Booking />, document.getElementById('root'));
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Learning />, document.getElementById('root'));
 // ReactDOM.render(<ShowDB />, document.getElementById('root'));
-ReactDOM.render(<PostDB />, document.getElementById('root'));
+//ReactDOM.render(<PostDB />, document.getElementById('root'));
+ReactDOM.render(<Test />, document.getElementById('root'));
+//ReactDOM.render(<FrontEndTest />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

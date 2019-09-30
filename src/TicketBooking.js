@@ -8,6 +8,34 @@ class Booking extends React.Component {
     this.click = this.click.bind(this);
   }
 
+  /*
+class Button extends React.Component {
+  constructor() {
+    super();
+    this.clicked = this.clicked.bind(this);
+  }
+
+  clicked() {
+    var newColor =
+      document.getElementById("1").style.background === "blue" ? "red" : "blue";
+    document.getElementById("1").style.background = newColor;
+  }
+
+  render() {
+    return (
+      <button
+        // id={this.id}
+        id="1"
+        style={{ background: "blue" }}
+        onClick={this.clicked}
+      >
+        seat
+      </button>
+    );
+  }
+}
+*/
+
   click(element) {
     var newColor =
       document.getElementById(element.target.id).style.background === "blue"
@@ -65,6 +93,13 @@ class Booking extends React.Component {
   } // end of render method
 } // end of Booking class
 
+/*
+var seatsWevent = document.getElementsByTagName("button");
+var buttonCount = seatsWevent.length;
+for (let i = 0; i < buttonCount; i++) {
+  seatsWevent[i].onclick = click(seatsWevent[i].id);
+}
+*/
 
 // ReactDOM.render(<ol>{seats}</ol>, document.getElementById("app"));
 
