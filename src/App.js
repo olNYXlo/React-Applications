@@ -14,6 +14,9 @@ function App() {
         : "blue";
     document.getElementById(element.target.id).style.background = newColor;
   }
+
+
+  
   const rows = ["A", "B", "C", "D", "E", "F", "G"];
   const seats = rows.map((seat, i) => (
     <ol id={rows[i]}>

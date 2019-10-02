@@ -6,6 +6,14 @@ class Booking extends React.Component {
   constructor() {
     super();
     this.click = this.click.bind(this);
+    //this.toggleHidden1 = this.toggleHidden1.bind(this);
+    //this.toggleHidden2 = this.toggleHidden2.bind(this);
+    this.toggleHidden3 = this.toggleHidden3.bind(this);
+    this.state = {
+      isHidden1 : JSON.parse(sessionStorage.getItem('isHidden1')) || false,
+      isHidden2 : JSON.parse(sessionStorage.getItem('isHidden2')) || false,
+      isHidden3 : JSON.parse(sessionStorage.getItem('isHidden3')) || false
+    }
   }
 
   /*
@@ -35,6 +43,19 @@ class Button extends React.Component {
   }
 }
 */
+  toggleHidden1 () {
+    sessionStorage.setItem('isHidden1',JSON.stringify(true))
+  }
+  toggleHidden2 () {
+    sessionStorage.setItem('isHidden2',JSON.stringify(true))
+  }
+  toggleHidden3 () {
+    this.setState({
+    isHidden3: !this.state.isHidden3
+    })
+  }
+
+  
 
   click(element) {
     var newColor =
@@ -43,6 +64,53 @@ class Button extends React.Component {
         : "blue";
     document.getElementById(element.target.id).style.background = newColor;
   }
+
+ 
+  render() {
+
+    const Child1 = () => (
+      <button
+          id={"A" + 1}
+          style={{ background: "blue" }}
+          onClick={this.toggleHidden1}
+        >
+          {"A" + 1}
+        </button>
+    )
+
+    const Child2 = () => (
+      <button
+          id={"A" + 2}
+          style={{ background: "blue" }}
+          onClick={this.toggleHidden2}
+        >
+          {"A" + 2}
+        </button>
+    );
+
+    const Child3 = () => (
+      <button
+          id={"A" + 3}
+          style={{ background: "blue" }}
+          onClick={this.toggleHidden3}
+        >
+          {"A" + 3}
+        </button>
+    );
+
+    return (
+      <ol id={"A"}>
+        
+        {!this.state.isHidden1 && <Child1 />}
+        {!this.state.isHidden2 && <Child2 />}
+        {!this.state.isHidden3 && <Child3 />}
+        
+
+      </ol>
+    )
+    }
+
+  /*
   render() {
     const rows = ["A", "B", "C", "D", "E", "F", "G"];
     //create a button for each seat
@@ -91,6 +159,7 @@ class Button extends React.Component {
     ));
     return seats;
   } // end of render method
+  */
 } // end of Booking class
 
 /*
