@@ -12,7 +12,8 @@ class Booking extends React.Component {
     this.state = {
       isHidden1 : JSON.parse(sessionStorage.getItem('isHidden1')) || false,
       isHidden2 : JSON.parse(sessionStorage.getItem('isHidden2')) || false,
-      isHidden3 : JSON.parse(sessionStorage.getItem('isHidden3')) || false
+      isHidden3 : JSON.parse(sessionStorage.getItem('isHidden3')) || false,
+      session : JSON.stringify(sessionStorage) || false
     }
   }
 
@@ -43,6 +44,12 @@ class Button extends React.Component {
   }
 }
 */
+
+  toggle (element){
+    sessionStorage.setItem(element.target.id,JSON.stringify(true))
+  }
+  
+
   toggleHidden1 () {
     sessionStorage.setItem('isHidden1',JSON.stringify(true))
   }
@@ -65,8 +72,62 @@ class Button extends React.Component {
     document.getElementById(element.target.id).style.background = newColor;
   }
 
- 
   render() {
+    const tests = [{
+      "settingsId": 2,
+      "poolId": 2,
+      "testCat": "Non-Technical",
+      "testType": "Logical",
+      "testSubtype": "Pattern Recognition",
+      "noOfQns": 20,
+      "timeLimit": 20,
+      "isHidden": false
+    },
+    {
+      "settingsId": 3,
+      "poolId": 33,
+      "testCat": "Technical",
+      "testType": "Programming",
+      "testSubtype": "Spring Boot",
+      "noOfQns": 20,
+      "timeLimit": 30,
+      "isHidden": false
+    },
+    {
+      "settingsId": 4,
+      "poolId": 2,
+      "testCat": "Technical",
+      "testType": "Agile",
+      "testSubtype": "Scrum Level 1",
+      "noOfQns": 10,
+      "timeLimit": 20,
+      "isHidden": false
+    }];
+
+    const buttons = tests.map((test, i) => (
+      <ol>
+        {!sessionStorage.getItem(test["testSubtype"]) && 
+        <button
+          id={test["testSubtype"]} 
+          onClick={this.toggle}
+        >
+          {test["testSubtype"]}
+        </button>
+        }
+      </ol>
+    ));
+    return <div>
+      {buttons}
+      <h1>
+          {JSON.stringify(sessionStorage)}
+      </h1>
+    </div> ;
+  }
+
+ /*
+  render() {
+
+
 
     const Child1 = () => (
       <button
@@ -104,11 +165,16 @@ class Button extends React.Component {
         {!this.state.isHidden1 && <Child1 />}
         {!this.state.isHidden2 && <Child2 />}
         {!this.state.isHidden3 && <Child3 />}
+        <h1>
+          {JSON.stringify(sessionStorage)}
+        </h1>
+
         
 
       </ol>
     )
     }
+    */
 
   /*
   render() {
