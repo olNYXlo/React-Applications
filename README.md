@@ -1,3 +1,11 @@
+Sample React JS Application with no real functionality other than for bug fixing & code testing
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
