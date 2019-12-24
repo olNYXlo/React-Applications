@@ -6,6 +6,8 @@ Also includes code to test advanced ideas / implementations to achieve desired f
 
 Testing of Axios calls, dealing with HTTP response data, dealing with CSRF token & JWT
 
+Swapping of which component to render by changing index.js file
+
 
 ==========================================================================
 
