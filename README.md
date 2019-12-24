@@ -1,5 +1,9 @@
 # Sample React JS Application with no real functionality other than for bug fixing & code testing
 
+Includes coding examples for learning the fundamentals of React JS functionality (Hooks, render, etc)
+Also includes code to test advanced ideas / implementations to achieve desired functionality (Button that can only be clicked once & disappears after using LocalStorage / SessionStorage)
+Testing of Axios calls, dealing with HTTP response data, dealing with CSRF token & JWT
+
 
 
 
